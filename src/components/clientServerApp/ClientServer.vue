@@ -3,13 +3,14 @@
     <div class="client-server__wrap">
       <button class="client-server__btn" @click="getWaifu">Get Waifu</button>
       <div class="client-server__img">
-        <img :src="img" alt="waifu" />
+        <img :src="img" alt="тут будет твоя waifu" />
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
+import { getData } from '@/components/clientServerApp/api'
 
 const apiUrl = 'https://api.waifu.im/search'
 
@@ -17,15 +18,10 @@ const img = ref('')
 
 const getWaifu = async () => {
   try {
-    const response = await fetch(apiUrl)
-    const data = await response.json()
-    if (response.ok) {
-      img.value = data.images.map((image: any) => {
-        return image.url
-      })
-    } else {
-      console.error('Error fetching waifu')
-    }
+    const data = await getData(apiUrl)
+    img.value = data.images.map((image: any) => {
+      return image.url
+    })
   } catch (error) {
     console.error(error)
   }
