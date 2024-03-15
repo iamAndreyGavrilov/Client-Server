@@ -20,3 +20,9 @@ PUT /users/1 - обновить пользователя с id=1),
 * XML - eXtensible Markup Language (устаревший, но все еще используется)
 
 Версионирование API:
+* В URL: /api/users
+* В URL: /api/v1/users
+
+Документация:
+* OpenAPI - cпецификация для описания REST API
+* Swagger - инструмент для создания документации по OpenAPI
