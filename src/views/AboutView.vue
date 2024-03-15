@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <ClientServer />
   </div>
 </template>
 
@@ -13,3 +13,6 @@
   }
 }
 </style>
+<script setup lang="ts">
+import ClientServer from '@/components/clientServerApp/ClientServer.vue'
+</script>
