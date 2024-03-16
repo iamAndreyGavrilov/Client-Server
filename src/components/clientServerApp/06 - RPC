@@ -1,0 +1,45 @@
+RPC - remote procedure call (удаленный вызов процедур)
+Сервер реализует метод, клиент без реализации метода вызывает его
+
+gRPC - это фреймворк для создания удаленных процедурных вызовов
+gRPC - очень популярен в микросервисной архитектуре
+
+Преимущества:
+- Использует HTTP/2 вместо HTTP/1.1 (быстрее на 15%)
+- Простой и быстрый стриминг данных
+- Вместо JSON использует бинарный формат (protobuf) - производительность, компактность
+
+Инструменты из коробки:
+- Генерация кода на разных языках
+- Аутентификация
+- Потоковая передача данных (в том числе двунаправленная)
+- ... и многое другое
+- Удобный вызов процедур
+
+Пример Бэка:
+
+package helloworld;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  rpc SayHelloStreamReply (HelloRequest) returns (stream HelloReply) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+Пример Фронта:
+
+const client = new hello_proto.Greeter('http://localhost:8080', null, null);
+
+const response = client.sayHello({name: 'World'}, (err, response) => {
+  console.log(response.message);
+});
+
+**************** Еще есть tRPC - TypeScript RPC ****************
