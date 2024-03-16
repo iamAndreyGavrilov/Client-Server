@@ -1,0 +1,35 @@
+SOAP - это протокол обмена структурированными сообщениями - XML
+SOAP - работает с прикладными протоколами, такими как HTTP, SMTP, FTP, и т.д.
+SOAP - использует WSDL для описания функций, типов данных и протоколов
+
+<binding type="bookPortType" name="bookBind">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getBook">
+        <soap:operation soapAction="urn:bookAction"/>
+        <input>
+            <soap:body use="encoded" namespace="urn:book" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </input>
+        <output>
+            <soap:body use="encoded" namespace="urn:book" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </output>
+    </operation>
+</binding>
+
+Если сравнивать REST и SOAP, то REST это много разных endpoint-ов, а
+SOAP это один endpoint, который может делать много разных вещей.
+
+Сообщение SOAP -
+3 обязательных элемента:
+Envelope
+Header
+Body
+
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:m="http://www.example.org/stock">
+   <soap:Header/>
+    <soap:Body>
+     <demo:book>
+      <demo:bookName>Harry Potter</demo:bookName>
+      <demo:bookAuthor>J.K. Rowling</demo:bookAuthor>
+     </demo:book>
+    </soap:Body>
+</soap:Envelope>
