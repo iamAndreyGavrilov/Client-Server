@@ -1,0 +1,43 @@
+GraphQL - это язык запросов к API, который позволяет клиентам запрашивать только те данные, которые им нужны.
+2 основных метода запроса:
+- query - для получения данных (аналог GET-запроса)
+- mutation - для изменения данных (аналог POST-запроса)
+* - subscription - для получения данных в режиме реального времени (аналог WebSocket-запроса)
+
+Бэкенд-разработчик создает схему GraphQL, которая описывает, какие данные можно получить и какие мутации
+можно сделать.
+
+Пример схемы GraphQL:
+```
+type Query {
+  user(id: ID!): User
+  allUsers: [User]
+}
+
+type Mutation {
+  createUser(name: String!): User
+  updateUser(id: ID!, name: String!): User
+  deleteUser(id: ID!): User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  age: Int
+}
+```
+
+Пример запроса к API:
+```
+query {
+  user(id: "1") {
+    name
+    email
+  }
+  allUsers {
+    name
+    email
+  }
+}
+```
