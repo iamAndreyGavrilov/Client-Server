@@ -41,3 +41,53 @@ query {
   }
 }
 ```
+Часто запрашиваемые поля можно объединить в фрагменты:
+```
+fragment UserFields on User {
+  name
+  email
+}
+
+query {
+  user(id: "1") {
+    ...UserFields
+  }
+  allUsers {
+    ...UserFields
+  }
+}
+```
+
+Пример мутации:
+```
+mutation {
+  createUser(name: "John") {
+    id
+    name
+    email
+  }
+  updateUser(id: "1", name: "John Doe") {
+    id
+    name
+    email
+  }
+  deleteUser(id: "1") {
+    id
+    name
+    email
+  }
+}
+```
+
+Преимущества GraphQL:
+1) Частичная самодокументация за счет схемы.
+2) Кодогенерация на клиенте.
+npm apollo codegen:generate --localSchemaFile=schema.json --target=typescript
+3) Оптимизация запросов. Меньше трафика, меньше запросов.
+
+Недостатки:
+1) Сложнее в реализации, чем REST.
+2) Не подходит для кеширования.
+
+## Apollo Client
+Apollo Client - это библиотека для работы с GraphQL-запросами на стороне клиента.
